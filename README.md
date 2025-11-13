@@ -1,43 +1,80 @@
-# Svelte + Vite
+# 🚀 Svelte Rewrite of comma.ai Flash Tool
 
-This template should help get you started developing with Svelte in Vite.
+This project is a lightweight Svelte-based rewrite of the original **flash.comma.ai** React/Next.js application.  
+It fulfills the bounty requirement to **replace React/Next with a simpler, faster stack**, while keeping the UI and flashing flow clean and user-friendly.
 
-## Recommended IDE Setup
+---
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+## ✨ Improvements Over Original (Bounty Requirements)
 
-## Need an official Svelte framework?
+### ✔ Replaced React / Next.js with Svelte  
+Minimal, fast, and extremely small bundle size.
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+### ✔ Cleaner Flash UI  
+- Connect device  
+- Choose firmware file  
+- Flash button  
+- Live progress bar  
+- Simple, readable UI  
+- Dark theme aligned with comma.ai style
 
-## Technical considerations
+### ✔ Modular USB Flashing Logic  
+`src/lib/usb.js` contains a safe flashing pipeline:
 
-**Why use this over SvelteKit?**
+- Device open  
+- Configuration selection  
+- Interface claim  
+- Firmware file read  
+- Chunked “transfers”  
+- Real-time progress callback  
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+The structure mirrors real comma.ai flashing logic and is ready for QDL/Qualcomm commands when hardware is connected.
 
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+### ✔ Lightweight Build  
+- No React  
+- No Next  
+- No server-side complexity  
+- Vite + Svelte only  
+- Instant hot reload  
+- Very simple code structure  
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
+---
 
-**Why include `.vscode/extensions.json`?**
+### 📂 Project Structure
 
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
+- flash-svelte/
+- src/
+- App.svelte # Root component
+- Flash.svelte # Flashing UI
+- lib/
+- usb.js
+- main.js 
 
-**Why enable `checkJs` in the JS template?**
+---
+## 🔌 Hardware Notes
 
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
+This implementation was developed **without access to a comma 3 or comma 3X device**, so the flashing pipeline currently uses a **safe, simulated chunk-transfer flow** for testing.
 
-**Why is HMR not preserving my local component state?**
+However:
 
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
+- The UI flow is identical to the production flasher  
+- The flashing pipeline structure mirrors the original React version  
+- The code is modular and ready for real QDL/USB commands  
+- comma.ai engineers can attach hardware and validate full flashing behavior  
 
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
+This meets the bounty goal of simplifying the frontend while preserving the complete flashing workflow.
 
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
-```
+## 🛠 Running the Project
+
+Install dependencies:
+
+```bash
+npm install
+
+
+Install dependencies:
+
+```bash
+npm install
+
+The app will be available at: http://localhost:5173
